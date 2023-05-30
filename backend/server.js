@@ -1,19 +1,28 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5500;
+const userRoute = require('./routes/userRoute');
+const errorhandler = require('./middlewares/errorHandler');
+const cookieParser = require('cookie-parser');
 
-// Middleware for parsing JSON
+// Middlewares
 app.use(express.json());
-
-// Middleware for parsing URL-encoded data
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(cors());
+
+// Route middlewares
+app.use('/api/users', userRoute);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Warehouse Wizzzzzzzzzard!!!');
 });
+
+// Error Handler
+app.use(errorhandler);
 
 mongoose
   .connect(process.env.MONGO_URI)
