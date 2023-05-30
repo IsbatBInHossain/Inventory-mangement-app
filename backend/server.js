@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5500;
-const userRoute = require('./routes/userRoute');
+const userRoutes = require('./routes/userRoutes');
 const errorhandler = require('./middlewares/errorHandler');
 const cookieParser = require('cookie-parser');
 
@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(cors());
 
 // Route middlewares
-app.use('/api/users', userRoute);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Warehouse Wizzzzzzzzzard!!!');
