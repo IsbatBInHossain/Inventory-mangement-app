@@ -114,4 +114,19 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid email or password');
   }
 });
-module.exports = { registerUser, loginUser };
+
+//* Logout User
+const logoutUser = asyncHandler(async (req, res) => {
+  // Expire the cookie token
+  res.cookie('token', '', {
+    path: '/',
+    httpOnly: true,
+    expires: new Date(0),
+    sameSite: 'none',
+    secure: process.env.NODE_ENV === 'development' ? false : true,
+  });
+  res.json({
+    message: 'Successfully logged out',
+  });
+});
+module.exports = { registerUser, loginUser, logoutUser };
