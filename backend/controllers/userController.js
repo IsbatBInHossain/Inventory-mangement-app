@@ -125,8 +125,31 @@ const logoutUser = asyncHandler(async (req, res) => {
     sameSite: 'none',
     secure: process.env.NODE_ENV === 'development' ? false : true,
   });
-  res.json({
+  res.status(200).json({
     message: 'Successfully logged out',
   });
 });
-module.exports = { registerUser, loginUser, logoutUser };
+
+//* Get User Data
+const getUser = asyncHandler(async (req, res) => {
+  // Find User
+  const user = await User.findById(req.user._id);
+
+  // Check if user exists
+  if (user) {
+    const { _id, name, password, phone, email, photo, bio } = user;
+    res.status(200).json({
+      _id,
+      name,
+      password,
+      phone,
+      email,
+      photo,
+      bio,
+    });
+  } else {
+    res.status(400);
+    throw new Error('User not found');
+  }
+});
+module.exports = { registerUser, loginUser, logoutUser, getUser };
