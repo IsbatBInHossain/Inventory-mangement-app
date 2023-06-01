@@ -16,15 +16,16 @@ const sendMail = async (subject, message, sendTo, sentFrom, replyTo) => {
   const options = {
     to: sendTo,
     from: sentFrom,
-    replyTo,
     subject,
     html: message,
+    replyTo,
   };
   transporter.sendMail(options, (err, info) => {
     if (err) {
       console.log(err);
+    } else {
+      console.log(info);
     }
-    console.log(info);
   });
 };
 
