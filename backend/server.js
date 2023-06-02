@@ -1,7 +1,9 @@
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 5500;
 const userRoutes = require('./routes/userRoutes');
@@ -14,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+app.use('/uploads', express.static(path.join('__dirname', 'uploads')));
 
 // Route middlewares
 app.use('/api/users', userRoutes);
