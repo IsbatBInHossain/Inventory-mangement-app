@@ -13,9 +13,9 @@ const Login = () => {
           </div>
           <h2>Login</h2>
           <form>
-            <input type='text' name='email' required placeholder='Email' />
+            <input type='email' name='email' required placeholder='Email' />
             <input
-              type='text'
+              type='password'
               name='password'
               required
               placeholder='Password'
@@ -27,7 +27,7 @@ const Login = () => {
           <Link to='/forgotpassword'>Forgot Password</Link>
           <span className={styles.register}>
             <Link to='/'>Home</Link>
-            <p>&nbsp; Don{`'`}t Have an account? &nbsp;</p>
+            <p>&nbsp; Don{`'`}t have an account? &nbsp;</p>
             <Link to='/register'>Register</Link>
           </span>
         </div>
