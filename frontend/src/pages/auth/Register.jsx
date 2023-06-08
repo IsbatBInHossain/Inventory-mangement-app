@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { registerUser, validateEmail } from '../../services/authService';
 import { setLogin, setName } from '../../redux/features/auth/authSlice';
+import Loader from '../../components/loader/Loader';
 
 const initialState = {
   name: '',
@@ -21,6 +22,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const { name, email, password, confirmPassword } = formData;
+
   const handleInputChange = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -49,12 +51,13 @@ const Register = () => {
       navigate('/dashboard');
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.log(error.message);
     }
   };
 
   return (
     <div className={`container ${styles.auth}`}>
+      {loading && <Loader />}
       <Card>
         <div className={styles.form}>
           <div className='--flex-center'>
