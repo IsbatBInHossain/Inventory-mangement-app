@@ -3,6 +3,7 @@ import './Home.scss';
 import { RiProductHuntLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import invImg from '../../assets/inv-img.png';
+import { ShowIfLoggedIn, ShowIfLoggedOut } from '../../protect/HiddenLinks';
 
 const Home = () => {
   return (
@@ -12,19 +13,25 @@ const Home = () => {
           <RiProductHuntLine size={35} />
         </div>
         <ul className='home-links'>
-          <li>
-            <Link to='/register'>Register</Link>
-          </li>
-          <li>
-            <button className='--btn --btn-primary'>
-              <Link to='/login'>Login</Link>
-            </button>
-          </li>
-          <li>
-            <button className='--btn --btn-primary'>
-              <Link to='/dashboard'>Dashboard</Link>
-            </button>
-          </li>
+          <ShowIfLoggedIn>
+            <li>
+              <button className='--btn --btn-primary'>
+                <Link to='/dashboard'>Dashboard</Link>
+              </button>
+            </li>
+          </ShowIfLoggedIn>
+          <ShowIfLoggedOut>
+            <li>
+              <Link to='/register'>Register</Link>
+            </li>
+          </ShowIfLoggedOut>
+          <ShowIfLoggedOut>
+            <li>
+              <button className='--btn --btn-primary'>
+                <Link to='/login'>Login</Link>
+              </button>
+            </li>
+          </ShowIfLoggedOut>
         </ul>
       </nav>
 

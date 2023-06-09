@@ -1,11 +1,7 @@
 import { logoutUser } from '../../services/authService';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  selectName,
-  setLogin,
-  setName,
-} from '../../redux/features/auth/authSlice';
+import { selectName, setLogin } from '../../redux/features/auth/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,7 +12,6 @@ const Header = () => {
     try {
       await logoutUser();
       dispatch(setLogin(false));
-      dispatch(setName(''));
       navigate('/login');
     } catch (error) {
       console.log(error.message);
