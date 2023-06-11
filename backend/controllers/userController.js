@@ -97,7 +97,7 @@ const loginUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 86400),
     sameSite: 'none',
-    secure: process.env.NODE_ENV === 'development' ? false : true,
+    secure: true,
   });
 
   if (user && passwordIsCorrect) {
@@ -126,7 +126,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(0),
     sameSite: 'none',
-    secure: process.env.NODE_ENV === 'development' ? false : true,
+    secure: true,
   });
   res.status(200).json({
     message: 'Successfully logged out',
