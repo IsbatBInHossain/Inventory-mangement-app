@@ -17,6 +17,7 @@ const useRedirectUser = path => {
       if (!loginStatus) {
         toast.info('Session expired, Please login to continue.');
         navigate(path);
+        return;
       }
     };
     redirectUser();

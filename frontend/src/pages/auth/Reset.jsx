@@ -37,8 +37,8 @@ const Reset = () => {
     const userData = { password };
     try {
       const response = await resetPassword(userData, resetToken);
-      navigate('/login');
       toast.success(response.success);
+      navigate('/login');
     } catch (error) {
       console.error(error.message);
     }

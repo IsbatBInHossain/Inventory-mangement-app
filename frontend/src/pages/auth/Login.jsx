@@ -43,7 +43,7 @@ const Login = () => {
       const data = await loginUser(userData);
       setLoading(false);
       dispatch(setLogin(true));
-      dispatch(setName(data.name));
+      dispatch(setName(data.name || ''));
       navigate('/dashboard');
     } catch (error) {
       setLoading(false);

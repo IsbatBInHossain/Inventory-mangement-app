@@ -1,10 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const name = JSON.parse(localStorage.getItem('name'));
+let name = '';
+try {
+  const storedName = localStorage.getItem('name');
+  if (storedName) {
+    name = JSON.parse(storedName);
+  }
+} catch (error) {
+  console.error('Error parsing JSON from localStorage:', error);
+}
 
 const initialState = {
   isLoggedIn: false,
-  name: name ? name : '',
+  name: name || '',
   user: {
     name: '',
     email: '',
@@ -34,7 +42,6 @@ const authSlice = createSlice({
 });
 
 export const { setLogin, setName, setUser } = authSlice.actions;
-
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectName = state => state.auth.name;
 export const selectUser = state => state.auth.user;

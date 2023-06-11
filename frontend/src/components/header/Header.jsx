@@ -9,13 +9,9 @@ const Header = () => {
   const name = useSelector(selectName);
 
   const handleLogoutUser = async () => {
-    try {
-      await logoutUser();
-      dispatch(setLogin(false));
-      navigate('/login');
-    } catch (error) {
-      console.log(error.message);
-    }
+    await logoutUser();
+    await dispatch(setLogin(false));
+    navigate('/login');
   };
   return (
     <div className='--pad header'>
