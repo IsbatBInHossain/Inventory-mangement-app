@@ -29,6 +29,24 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
+export const getAllProducts = createAsyncThunk(
+  'product/getall',
+  async (_, thunkApi) => {
+    try {
+      return await productService.getAllProducts();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      console.error(message);
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: 'product',
@@ -46,15 +64,32 @@ const productSlice = createSlice({
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.products.push(action.paload);
-        console.log(action.payload);
+        state.isError = true;
+        state.products.push(action.payload);
         toast.success('Product added successfully');
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.isLoading = false;
+        state.isSuccess = false;
         state.isError = true;
         state.message = action.payload;
-        toast.error('Failed to add Product');
+        toast.error(action.payload);
+      })
+      .addCase(getAllProducts.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getAllProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.products = action.payload;
+      })
+      .addCase(getAllProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
       });
   },
 });
