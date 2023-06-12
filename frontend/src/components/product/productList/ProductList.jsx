@@ -4,6 +4,7 @@ import { Spinner } from '../../loader/Loader';
 import './ProductList.scss';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import Search from '../../search/Search';
+import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -22,6 +23,24 @@ const ProductList = ({ products, isLoading }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
   const filteredProducts = useSelector(selectFilteredProducts);
+
+  // Start Paginate
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(filteredProducts.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredProducts.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, filteredProducts]);
+
+  const handlePageClick = event => {
+    const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
+    setItemOffset(newOffset);
+  };
+  // End Paginate
 
   useEffect(() => {
     dispatch(filterProducts({ products, searchTerm }));
@@ -60,7 +79,7 @@ const ProductList = ({ products, isLoading }) => {
                 </tr>
               </thead>
               <tbody>
-                {filteredProducts.map((product, index) => {
+                {currentItems.map((product, index) => {
                   const { _id, name, category, price, quantity } = product;
                   return (
                     <tr key={_id}>
@@ -94,6 +113,20 @@ const ProductList = ({ products, isLoading }) => {
             </table>
           )}
         </div>
+        <ReactPaginate
+          breakLabel='...'
+          nextLabel='Next'
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel='Prev'
+          renderOnZeroPageCount={null}
+          containerClassName='pagination'
+          pageLinkClassName='page-num'
+          previousLinkClassName='page-num'
+          nextLinkClassName='page-num'
+          activeLinkClassName='activePage'
+        />
       </div>
     </div>
   );
