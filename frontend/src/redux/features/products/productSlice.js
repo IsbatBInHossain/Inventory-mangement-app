@@ -9,6 +9,9 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: '',
+  totalStoreValue: 0,
+  outOfStock: 0,
+  category: [],
 };
 
 export const createProduct = createAsyncThunk(
@@ -52,8 +55,44 @@ const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    calcStoreValue(state) {
-      console.log(state);
+    calcStoreValue(state, action) {
+      const products = action.payload;
+      const cumulProducts = [];
+      products.map(item => {
+        const { price, quantity } = item;
+        return cumulProducts.push(price * quantity);
+      });
+      state.totalStoreValue = cumulProducts.reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+    },
+    calcCategory(state, action) {
+      const products = action.payload;
+      const categoryArray = [];
+      products.map(item => {
+        const { category } = item;
+        if (!categoryArray.includes(category)) {
+          categoryArray.push(category);
+        }
+      });
+      state.category = categoryArray;
+    },
+    calcOutOfStock(state, action) {
+      const products = action.payload;
+      const array = [];
+      products.map(item => {
+        const { quantity } = item;
+
+        return array.push(quantity);
+      });
+      let count = 0;
+      array.forEach(number => {
+        if (number === 0 || number === '0') {
+          count += 1;
+        }
+      });
+      state.outOfStock = count;
     },
   },
   extraReducers: builder => {
@@ -94,8 +133,12 @@ const productSlice = createSlice({
   },
 });
 
-export const { calcStoreValue } = productSlice.actions;
+export const { calcStoreValue, calcCategory, calcOutOfStock } =
+  productSlice.actions;
 
 export const selectIsLoading = state => state.product.isLoading;
+export const selectTotalStoreValue = state => state.product.totalStoreValue;
+export const selectCategory = state => state.product.category;
+export const selectOutOfStock = state => state.product.outOfStock;
 
 export default productSlice.reducer;
