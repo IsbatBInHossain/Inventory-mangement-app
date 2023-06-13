@@ -30,7 +30,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/contact', contactRoute);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Warehouse Wizzzzzzzzzard!!!');
+  res.send('Welcome to Warehouse Wizard!!!');
 });
 
 // Error Handler

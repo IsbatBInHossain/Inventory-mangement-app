@@ -102,9 +102,9 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 
   // Match product to the User
-  if (product.user.toString() !== req.user._id) {
+  if (product.user.toString() !== req.user.id) {
     res.status(401);
-    throw new Error('User not authorized');
+    throw new Error('User is not authorized');
   }
 
   // Manage Image upload

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types */
 import './ProductForm.scss';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -13,6 +14,8 @@ const ProductForm = ({
   handleImageChange,
   saveProduct,
 }) => {
+  const { name, category, price, quantity } = product || {};
+
   return (
     <div>
       <div className='add-product'>
@@ -41,7 +44,7 @@ const ProductForm = ({
               type='text'
               name='name'
               placeholder='Product Name'
-              value={product?.name}
+              value={name || ''}
               onChange={handleInputChange}
             />
             <label>Product Category:</label>
@@ -49,7 +52,7 @@ const ProductForm = ({
               type='text'
               name='category'
               placeholder='Product Category'
-              value={product?.category}
+              value={category || ''}
               onChange={handleInputChange}
             />
             <label>Product Price:</label>
@@ -57,7 +60,7 @@ const ProductForm = ({
               type='text'
               name='price'
               placeholder='Product Price'
-              value={product?.price}
+              value={price || ''}
               onChange={handleInputChange}
             />
             <label>Product Quantity:</label>
@@ -65,7 +68,7 @@ const ProductForm = ({
               type='text'
               name='quantity'
               placeholder='Product Quantity'
-              value={product?.quantity}
+              value={quantity || ''}
               onChange={handleInputChange}
             />
             <label>Product Description:</label>

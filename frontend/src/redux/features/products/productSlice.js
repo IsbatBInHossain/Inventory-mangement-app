@@ -87,6 +87,25 @@ export const getSingleProduct = createAsyncThunk(
   }
 );
 
+// Update product
+export const updateProduct = createAsyncThunk(
+  'products/update',
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      return await productService.updateProduct(id, formData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -197,6 +216,23 @@ const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.error(action.payload);
+      })
+      .addCase(updateProduct.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(updateProduct.fulfilled, state => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+
+        toast.success('Successfully updated the product');
+      })
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
       });
   },
 });
@@ -208,5 +244,6 @@ export const selectIsLoading = state => state.product.isLoading;
 export const selectTotalStoreValue = state => state.product.totalStoreValue;
 export const selectCategory = state => state.product.category;
 export const selectOutOfStock = state => state.product.outOfStock;
+export const selectProduct = state => state.product.product;
 
 export default productSlice.reducer;
