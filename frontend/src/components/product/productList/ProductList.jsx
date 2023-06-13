@@ -7,7 +7,8 @@ import Search from '../../search/Search';
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
   filterProducts,
@@ -125,7 +126,9 @@ const ProductList = ({ products, isLoading }) => {
                       </td>
                       <td className='icons'>
                         <span>
-                          <AiOutlineEye size={25} color='purple' />
+                          <Link to={`/product-details/${_id}`}>
+                            <AiOutlineEye size={25} color='purple' />
+                          </Link>
                         </span>
                         <span>
                           <FaEdit size={20} color='green' />
