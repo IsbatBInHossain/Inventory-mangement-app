@@ -50,6 +50,24 @@ export const getAllProducts = createAsyncThunk(
     }
   }
 );
+export const deleteProduct = createAsyncThunk(
+  'product/delete',
+  async (id, thunkApi) => {
+    try {
+      return await productService.deleteProduct(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      console.error(message);
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: 'product',
@@ -124,6 +142,22 @@ const productSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(deleteProduct.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteProduct.fulfilled, state => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success('Product Deleted Successfully');
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
