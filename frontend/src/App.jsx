@@ -8,8 +8,6 @@ import Sidebar from './components/sidebar/Sidebar';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import axios from 'axios';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getLoginStatus } from './services/authService';
@@ -17,6 +15,9 @@ import { setLogin } from './redux/features/auth/authSlice';
 import AddProduct from './pages/addProduct/AddProduct';
 import ProductDetails from './components/product/productDetails/ProductDetails';
 import EditProduct from './pages/editProduct/EditProduct';
+import Profile from './pages/profile/Profile';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.withCredentials = true;
 
@@ -76,6 +77,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <EditProduct />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/profile'
+          element={
+            <Sidebar>
+              <Layout>
+                <Profile />
               </Layout>
             </Sidebar>
           }
