@@ -19,6 +19,7 @@ import Profile from './pages/profile/Profile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EditProfile from './pages/profile/EditProfile';
+import Contact from './pages/contanct/Contact';
 
 axios.defaults.withCredentials = true;
 
@@ -98,6 +99,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <EditProfile />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/contact-us'
+          element={
+            <Sidebar>
+              <Layout>
+                <Contact />
               </Layout>
             </Sidebar>
           }

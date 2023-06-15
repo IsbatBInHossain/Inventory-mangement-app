@@ -1,7 +1,7 @@
 import styles from './auth.module.scss';
 import { BiLogIn } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
-import Card from '../../components/card/card';
+import Card from '../../components/card/Card';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { loginUser, validateEmail } from '../../services/authService';
@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value || '' });
   };
 
   const handleLoginUser = async e => {
@@ -43,7 +43,11 @@ const Login = () => {
       const data = await loginUser(userData);
       setLoading(false);
       dispatch(setLogin(true));
-      dispatch(setName(data.name || ''));
+      if (data && data.name) {
+        dispatch(setName(data.name));
+      } else {
+        dispatch(setName(''));
+      }
       navigate('/dashboard');
     } catch (error) {
       setLoading(false);
