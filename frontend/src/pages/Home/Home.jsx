@@ -1,8 +1,7 @@
-// import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './Home.scss';
-import { RiProductHuntLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import invImg from '../../assets/inv-img.png';
+import wizardImg from '../../assets/wizard.png';
+import logo from '../../assets/logo.svg';
 import { ShowIfLoggedIn, ShowIfLoggedOut } from '../../protect/HiddenLinks';
 
 const Home = () => {
@@ -10,24 +9,26 @@ const Home = () => {
     <div className='home'>
       <nav className='container --flex-between'>
         <div className='logo'>
-          <RiProductHuntLine size={35} />
+          <img src={logo} alt='logo' />
         </div>
         <ul className='home-links'>
           <ShowIfLoggedIn>
             <li>
-              <button className='--btn --btn-primary'>
+              <button className='--btn --btn-gold'>
                 <Link to='/dashboard'>Dashboard</Link>
               </button>
             </li>
           </ShowIfLoggedIn>
           <ShowIfLoggedOut>
             <li>
-              <Link to='/register'>Register</Link>
+              <button className='--btn --btn-gold'>
+                <Link to='/register'>Register</Link>
+              </button>
             </li>
           </ShowIfLoggedOut>
           <ShowIfLoggedOut>
             <li>
-              <button className='--btn --btn-primary'>
+              <button className='--btn --btn-gold'>
                 <Link to='/login'>Login</Link>
               </button>
             </li>
@@ -37,10 +38,12 @@ const Home = () => {
 
       <section className='container hero'>
         <div className='hero-text'>
-          <h2>Inventory & Stock Management Solution</h2>
+          <h2>Welcome to Warehouse Wizard</h2>
           <p>
-            Inventory system to control and manage proucts in the warehouse in
-            real timeand integrated to make it easier to develop your business.
+            Master inventory management made easy. Track, control, and optimize
+            inventory across any business. Real-time insights, seamless
+            operations, and unlimited growth. Unleash the power of Warehouse
+            Wizard today.
           </p>
           <div className='hero-buttons'>
             <button className='--btn --btn-secondary'>
@@ -54,7 +57,7 @@ const Home = () => {
           </div>
         </div>
         <div className='hero-image'>
-          <img src={invImg} alt='inventory' />
+          <img src={wizardImg} alt='inventory' />
         </div>
       </section>
     </div>

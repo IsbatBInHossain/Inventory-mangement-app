@@ -1,15 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
 :root {
   --nav-width: 68px;
   --header-height: 45px;
 
-  --font-family: "Poppins", sans-serif;
+  --font-family: 'Poppins', sans-serif;
+  --font-family-medieval: 'MedievalSharp', cursive;
+  --font-family-magic: 'Cinzel Decorative', cursive;
   --dark-blue: #0a1930;
   --light-blue: #1f93ff;
 
   --color-white: #fff;
   --color-dark: #333;
+  --color-darkoak: #330000;
+  --color-gold: #cc9800;
 
   --color-grey: #eee;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -209,6 +215,9 @@ p {
 .--color-dark {
   color: #333;
 }
+.--color-dark-oak {
+  color: #330000;
+}
 
 /* Center Text */
 .--text-center {
@@ -326,6 +335,11 @@ p {
   border: 1px solid #fff;
   background: transparent;
 }
+.--btn-gold {
+  color: #fff;
+  border: 1px solid #330000;
+  background: var(--color-gold);
+}
 .--btn-danger {
   color: #fff;
   background: orangered;
@@ -421,7 +435,7 @@ p {
   position: relative;
 }
 .--line::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: -5px;

@@ -1,6 +1,6 @@
 .home {
-  background-color: #030b6b;
-  // background-color: #4b4b55;
+  background-color: #330000;
+  font-family: var(--font-family-medieval);
   min-height: 100vh;
 
   & nav {
@@ -9,6 +9,11 @@
     color: #fff;
     & > .logo {
       color: #fff;
+    }
+    & > .logo img {
+      color: #fff;
+      height: 60px;
+      width: 60px;
     }
   }
 }
@@ -37,17 +42,28 @@
     color: #fff;
     margin-bottom: 2rem;
   }
+  & > h2 {
+    font-family: var(--font-family-magic);
+  }
   & > h2 span {
     display: block;
+  }
+  & > p {
+    font-size: 1.65rem;
   }
   & .hero-buttons a {
     color: #fff;
   }
+  & .hero-buttons button {
+    font-family: var(--font-family-medieval);
+  }
 }
 .hero-image {
   width: 50%;
+  padding-left: 80px;
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 760px) {
   .hero {
     flex-direction: column;
   }

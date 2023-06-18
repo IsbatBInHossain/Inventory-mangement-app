@@ -1,4 +1,4 @@
-import { RiProductHuntLine } from 'react-icons/ri';
+import logo from '../../assets/logo.svg';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import './Sidebar.scss';
 import { useState } from 'react';
@@ -18,17 +18,13 @@ const Sidebar = ({ children }) => {
       <div className='sidebar' style={{ width: isOpen ? '230px' : '60px' }}>
         <div className='top-section'>
           <div className='logo' style={{ display: isOpen ? 'block' : 'none' }}>
-            <RiProductHuntLine
-              size={35}
-              style={{ cursor: 'pointer' }}
-              onClick={goHome}
-            />
+            <img src={logo} alt='logo' onClick={goHome} />
           </div>
           <div
             className='bars'
             style={{ marginLeft: isOpen ? '100px' : '0px' }}
           >
-            <HiMenuAlt3 onClick={() => setIsOpen(!isOpen)} />
+            <HiMenuAlt3 onClick={() => setIsOpen(!isOpen)} size={30} />
           </div>
         </div>
         {menu.map(item => {
