@@ -1,4 +1,4 @@
-import loaderImg from '../../assets/loader.gif';
+import loaderImg from '../../assets/blueFire.gif';
 import { createPortal } from 'react-dom';
 import './Loader.scss';
 
@@ -15,7 +15,7 @@ const Loader = () => {
 
 export const Spinner = () => {
   return (
-    <div className='--center-all'>
+    <div className='--center-all spinner'>
       <img src={loaderImg} alt='Loading...' />
     </div>
   );

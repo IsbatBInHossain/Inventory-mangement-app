@@ -13,4 +13,14 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+  & img {
+    width: 64px;
+    height: 98px;
+  }
+}
+.spinner {
+  & img {
+    width: 64px;
+    height: 98px;
+  }
 }
