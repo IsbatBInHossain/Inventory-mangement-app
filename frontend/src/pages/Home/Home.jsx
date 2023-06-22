@@ -14,21 +14,21 @@ const Home = () => {
         <ul className='home-links'>
           <ShowIfLoggedIn>
             <li>
-              <button className='--btn --btn-gold'>
+              <button className='--btn-lg --btn-gold'>
                 <Link to='/dashboard'>Dashboard</Link>
               </button>
             </li>
           </ShowIfLoggedIn>
           <ShowIfLoggedOut>
             <li>
-              <button className='--btn --btn-gold'>
+              <button className='--btn-lg --btn-gold'>
                 <Link to='/register'>Register</Link>
               </button>
             </li>
           </ShowIfLoggedOut>
           <ShowIfLoggedOut>
             <li>
-              <button className='--btn --btn-gold'>
+              <button className='--btn-lg --btn-gold'>
                 <Link to='/login'>Login</Link>
               </button>
             </li>
@@ -47,13 +47,13 @@ const Home = () => {
           </p>
           <div className='hero-buttons'>
             <button className='--btn --btn-secondary'>
-              <Link to='/dashboard'>Free 1 Month Trial</Link>
+              <Link to='/register'>Free 1 Month Trial</Link>
             </button>
           </div>
           <div className='--flex-start'>
-            <NumberText num='14K' text='Brand Owners' />
-            <NumberText num='23K' text='Active Users' />
-            <NumberText num='500+' text='Partners' />
+            <NumberText num='2K' text='Brand Owners' />
+            <NumberText num='17K' text='Active Users' />
+            <NumberText num='350+' text='Partners' />
           </div>
         </div>
         <div className='hero-image'>
