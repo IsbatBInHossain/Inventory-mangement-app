@@ -1,7 +1,7 @@
 import styles from './auth.module.scss';
 import { TiUserAddOutline } from 'react-icons/ti';
 import { Link, useNavigate } from 'react-router-dom';
-import Card from '../../components/card/card';
+import Card from '../../components/card/Card';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

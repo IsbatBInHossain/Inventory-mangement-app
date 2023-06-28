@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 86400),
     sameSite: 'none',
-    secure: process.env.NODE_ENV === 'development' ? false : true,
+    secure: true,
   });
 
   // Check if user exists

@@ -1,7 +1,7 @@
 import styles from './auth.module.scss';
 import { AiOutlineMail } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import Card from '../../components/card/card';
+import Card from '../../components/card/Card';
 import { useState } from 'react';
 import { forgotPassword, validateEmail } from '../../services/authService';
 import { toast } from 'react-toastify';

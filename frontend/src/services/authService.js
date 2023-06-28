@@ -39,10 +39,8 @@ export const loginUser = async userData => {
     );
     if (response.statusText === 'OK') {
       toast.success('User logged in successfully');
-      return response.data;
-    } else {
-      throw new Error('Login failed');
     }
+    return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

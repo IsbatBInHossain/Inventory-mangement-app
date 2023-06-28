@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className='--flex-center --py2'>
-      <p>All Right Reserved &copy; 2023</p>
+      <p>Isbat-Bin-Hossain &copy; 2023</p>
     </div>
   );
 };
