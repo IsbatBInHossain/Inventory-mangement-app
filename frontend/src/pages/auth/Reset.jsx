@@ -1,7 +1,7 @@
 import styles from './auth.module.scss';
 import { MdPassword } from 'react-icons/md';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import Card from '../../components/card/card';
+import Card from '../../components/card/Card';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { resetPassword } from '../../services/authService';
